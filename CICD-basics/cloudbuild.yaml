@@ -4,7 +4,7 @@ steps:
     args:
       - '-c'
       - |
-        pip install -r requirements.txt
+        pip install -r CICD-basics/requirements.txt
         pytest
 options:
   logging: CLOUD_LOGGING_ONLY
