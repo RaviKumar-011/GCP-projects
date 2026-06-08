@@ -1,7 +1,10 @@
 steps:
   - name: 'python:3.11'
-    entrypoint: 'python'
+    entrypoint: 'bash'
     args:
-      - 'CICD-basics/app.py'
+      - '-c'
+      - |
+        pip install -r requirements.txt
+        pytest
 options:
   logging: CLOUD_LOGGING_ONLY
