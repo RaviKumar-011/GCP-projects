@@ -4,4 +4,4 @@ steps:
   args:
     - '-c'
     - |
-      bq query --use_legacy_sql=false < sql/create_customer.sql
+      bq query --use_legacy_sql=false < CICD-basics/BQ_SQL_DEPLOY/sql/create_customer.sql
