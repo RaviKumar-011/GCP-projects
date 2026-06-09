@@ -5,3 +5,5 @@ steps:
     - '-c'
     - |
       bq query --use_legacy_sql=false < CICD-basics/BQ_SQL_DEPLOY/sql/create_customer.sql
+options:
+  logging: CLOUD_LOGGING_ONLY
