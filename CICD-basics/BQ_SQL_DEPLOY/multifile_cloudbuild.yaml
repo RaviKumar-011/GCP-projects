@@ -4,7 +4,7 @@ steps:
   args:
     - '-c'
     - |
-      for file in sql/*.sql
+      for file in CICD-basics/BQ_SQL_DEPLOY/sql/*.sql
       do
         echo "Executing $file"
         bq query --use_legacy_sql=false < "$file"
