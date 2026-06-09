@@ -1,13 +1,13 @@
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
-  args: 
+  args:
     - '-c'
     - |
-      for file in CICD-basics/BQ_SQL_DEPLOY/sql/*.sql
+      for file in sql/*.sql
       do
-        echo "executing $file"
+        echo "Executing $file"
         bq query --use_legacy_sql=false < "$file"
       done
- options:
-   logging: CLOUD_LOGGING_ONLY
+options:
+  logging: CLOUD_LOGGING_ONLY
