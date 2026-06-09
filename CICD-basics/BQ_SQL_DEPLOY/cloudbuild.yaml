@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      bq query --use_legacy_sql=false < sql/create_customer.sql
