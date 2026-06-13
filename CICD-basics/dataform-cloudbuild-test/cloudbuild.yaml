@@ -4,9 +4,9 @@ steps:
   args:
     - '-c'
     - |
-      ACCESS_TOKEN=$(gcloud auth print-access-token)
+      ACCESS_TOKEN=$$(gcloud auth print-access-token)
 
-      curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+      curl -H "Authorization: Bearer $$ACCESS_TOKEN" \
       "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories"
 
 options:
