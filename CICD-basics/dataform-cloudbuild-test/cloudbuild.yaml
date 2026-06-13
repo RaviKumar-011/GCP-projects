@@ -1,3 +1,8 @@
 steps:
-  - name: 'ubuntu'
-    args: ['echo', 'hello']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      gcloud dataform repositories list \
+      --location=us-central1
