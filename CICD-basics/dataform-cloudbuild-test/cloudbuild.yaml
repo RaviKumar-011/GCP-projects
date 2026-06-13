@@ -4,7 +4,7 @@ steps:
   args:
     - '-c'
     - |
-      gcloud dataform repositories list \
-      --location=us-central1
+      gcloud auth list
+
 options:
   logging: CLOUD_LOGGING_ONLY
