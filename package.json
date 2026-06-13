@@ -1,0 +1,6 @@
+{
+  "name": "ravi-dataform-prac",
+  "dependencies": {
+    "@dataform/core": "latest"
+  }
+}
