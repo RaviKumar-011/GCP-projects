@@ -5,4 +5,4 @@ steps:
     - '-c'
     - |
       gcloud dataform repositories list \
-      --location=us-central1 
+      --location=us-central1
