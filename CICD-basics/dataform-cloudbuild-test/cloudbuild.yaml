@@ -6,8 +6,11 @@ steps:
     - |
       ACCESS_TOKEN=$$(gcloud auth print-access-token)
 
-      curl -H "Authorization: Bearer $$ACCESS_TOKEN" \
-      "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories"
+      curl -X POST \
+      -H "Authorization: Bearer $$ACCESS_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{}' \
+      "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/compilationResults"
 
 options:
   logging: CLOUD_LOGGING_ONLY
