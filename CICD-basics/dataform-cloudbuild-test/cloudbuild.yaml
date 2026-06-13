@@ -6,3 +6,5 @@ steps:
     - |
       gcloud dataform repositories list \
       --location=us-central1
+options:
+  logging: CLOUD_LOGGING_ONLY
