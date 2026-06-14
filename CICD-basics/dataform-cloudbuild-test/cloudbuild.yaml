@@ -4,10 +4,10 @@ steps:
   args:
     - '-c'
     - |
-      ACCESS_TOKEN=$(gcloud auth print-access-token)
+      ACCESS_TOKEN=$$(gcloud auth print-access-token)
 
       curl -X POST \
-      -H "Authorization: Bearer $ACCESS_TOKEN" \
+      -H "Authorization: Bearer $$ACCESS_TOKEN" \
       -H "Content-Type: application/json" \
       -d '{
             "compilationResult": "projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/compilationResults/8d28fa8e-b75e-4e6f-9c48-49d2ab6d1c2d"
