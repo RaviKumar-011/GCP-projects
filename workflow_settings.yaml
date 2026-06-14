@@ -1,3 +1,4 @@
 defaultProject: project-cb5a77af-6ec0-433b-a14
-defaultLocation: us-central1
 defaultDataset: demo
+defaultAssertionDataset: dataform_assertions
+dataformCoreVersion: 3.0.52
