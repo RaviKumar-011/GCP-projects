@@ -1,27 +1,51 @@
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      ACCESS_TOKEN=$$(gcloud auth print-access-token)
+  # Step 1: Create a new compilation result and save the resource name to a file
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    id: 'Compile Dataform'
+    args:
+      - '-c'
+      - |
+        ACCESS_TOKEN=$(gcloud auth print-access-token)
+        
+        COMPILATION_RESP=$(curl -X POST \
+          -H "Authorization: Bearer $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{"gitCommitish": "main"}' \
+          "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/compilationResults")
+        
+        # Extract the compilation result name field
+        COMPILATION_NAME=$(echo $COMPILATION_RESP | grep -o '"name": "[^"]*' | grep -o '[^"]*$')
+        echo "$COMPILATION_NAME" > compilation_name.txt
+        echo "Created compilation result: $COMPILATION_NAME"
 
-      curl -X POST \
-      -H "Authorization: Bearer $$ACCESS_TOKEN" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "compilationResult": "projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/compilationResults/06351dd2-4bf7-4305-9f83-3398cb8b87be",
-        "invocationConfig": {
-          "includedTargets": [
-            {
-              "database": "project-cb5a77af-6ec0-433b-a14",
-              "schema": "demo",
-              "name": "customer"
-            }
-          ]
-        }
-      }' \
-      "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/workflowInvocations"
+  # Step 2: Invoke the workflow using the fresh compilation result
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    id: 'Execute Dataform'
+    args:
+      - '-c'
+      - |
+        ACCESS_TOKEN=$(gcloud auth print-access-token)
+        COMPILATION_RESULT=$(cat compilation_name.txt)
+        
+        curl -X POST \
+        -H "Authorization: Bearer $ACCESS_TOKEN" \
+        -H "Content-Type: application/json" \
+        -d "{
+          \"compilationResult\": \"$COMPILATION_RESULT\",
+          \"invocationConfig\": {
+            \"includedTargets\": [
+              {
+                \"database\": \"project-cb5a77af-6ec0-433b-a14\",
+                \"schema\": \"demo\",
+                \"name\": \"customer\"
+              }
+            ],
+            \"transitiveDependenciesIncluded\": true
+          }
+        }" \
+        "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/workflowInvocations"
 
 options:
   logging: CLOUD_LOGGING_ONLY
