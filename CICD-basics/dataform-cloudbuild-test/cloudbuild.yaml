@@ -10,34 +10,9 @@ steps:
       -H "Authorization: Bearer $$ACCESS_TOKEN" \
       -H "Content-Type: application/json" \
       -d '{
-        "compilationResult": "projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/compilationResults/8d28fa8e-b75e-4e6f-9c48-49d2ab6d1c2d",
-        "invocationConfig": {
-          "includedTargets": [
-            {
-              "database": "project-cb5a77af-6ec0-433b-a14",
-              "schema": "demo",
-              "name": "customer"
-            },
-            {
-              "database": "project-cb5a77af-6ec0-433b-a14",
-              "schema": "demo",
-              "name": "customer_summary"
-            },
-            {
-              "database": "project-cb5a77af-6ec0-433b-a14",
-              "schema": "demo",
-              "name": "first_view"
-            },
-            {
-              "database": "project-cb5a77af-6ec0-433b-a14",
-              "schema": "demo",
-              "name": "second_view"
-            }
-          ],
-          "transitiveDependenciesIncluded": true
-        }
-      }' \
-      "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/workflowInvocations"
+            "gitCommitish": "main"
+          }' \
+      "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/compilationResults"
 
 options:
   logging: CLOUD_LOGGING_ONLY
