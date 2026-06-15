@@ -8,18 +8,27 @@ steps:
       ACCESS_TOKEN=$$(gcloud auth print-access-token)
 
       RELEASE_ID=$$(grep -o '"releaseConfigId":[ ]*"[^"]*"' CICD-basics/dataform-cloudbuild-test/release-config.json | cut -d'"' -f4)
+
       GIT_BRANCH=$$(grep -o '"gitCommitish":[ ]*"[^"]*"' CICD-basics/dataform-cloudbuild-test/release-config.json | cut -d'"' -f4)
+
+      CRON_SCHEDULE=$$(grep -o '"cronSchedule":[ ]*"[^"]*"' CICD-basics/dataform-cloudbuild-test/release-config.json | cut -d'"' -f4)
+
+      TIME_ZONE=$$(grep -o '"timeZone":[ ]*"[^"]*"' CICD-basics/dataform-cloudbuild-test/release-config.json | cut -d'"' -f4)
 
       echo "Release ID: $$RELEASE_ID"
       echo "Branch: $$GIT_BRANCH"
+      echo "Cron: $$CRON_SCHEDULE"
+      echo "Timezone: $$TIME_ZONE"
 
       curl -X POST \
       -H "Authorization: Bearer $$ACCESS_TOKEN" \
       -H "Content-Type: application/json" \
       -d "{
-        \"gitCommitish\":\"$$GIT_BRANCH\"
+        \"gitCommitish\":\"$$GIT_BRANCH\",
+        \"cronSchedule\":\"$$CRON_SCHEDULE\",
+        \"timeZone\":\"$$TIME_ZONE\"
       }" \
       "https://dataform.googleapis.com/v1beta1/projects/project-cb5a77af-6ec0-433b-a14/locations/us-central1/repositories/ravi-dataform-prac/releaseConfigs?releaseConfigId=$$RELEASE_ID"
 
 options:
-  logging: CLOUD_LOGGING_ONLY 
+  logging: CLOUD_LOGGING_ONLY
