@@ -7,8 +7,8 @@ steps:
 
       ACCESS_TOKEN=$$(gcloud auth print-access-token)
 
-      RELEASE_ID=$$(grep -o '"releaseConfigId":[ ]*"[^"]*"' release-config.json | cut -d'"' -f4)
-      GIT_BRANCH=$$(grep -o '"gitCommitish":[ ]*"[^"]*"' release-config.json | cut -d'"' -f4)
+      RELEASE_ID=$$(grep -o '"releaseConfigId":[ ]*"[^"]*"' CICD-basics/dataform-cloudbuild-test/release-config.json | cut -d'"' -f4)
+      GIT_BRANCH=$$(grep -o '"gitCommitish":[ ]*"[^"]*"' CICD-basics/dataform-cloudbuild-test/release-config.json | cut -d'"' -f4)
 
       echo "Release ID: $$RELEASE_ID"
       echo "Branch: $$GIT_BRANCH"
