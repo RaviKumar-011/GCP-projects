@@ -1,6 +1,6 @@
 {
-  "releaseConfigId": "dev-release2",
+  "releaseConfigId": "dev-release3",
   "gitCommitish": "main",
   "cronSchedule": "0 18 * * *",
-  "timeZone": "Asia/Kolkata" 
+  "timeZone": "Asia/Kolkata"
 }
