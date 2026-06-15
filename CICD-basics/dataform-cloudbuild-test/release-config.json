@@ -1,4 +1,6 @@
 {
   "releaseConfigId": "dev-release2",
-  "gitCommitish": "main"
+  "gitCommitish": "main",
+  "cronSchedule": "0 18 * * *",
+  "timeZone": "Asia/Kolkata"
 }
