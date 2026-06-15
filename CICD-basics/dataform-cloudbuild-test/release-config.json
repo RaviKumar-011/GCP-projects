@@ -3,4 +3,4 @@
   "gitCommitish": "main",
   "cronSchedule": "0 18 * * *",
   "timeZone": "Asia/Kolkata"
-}
+} 
