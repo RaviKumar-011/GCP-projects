@@ -13,7 +13,7 @@ steps:
       echo "Release ID: $$RELEASE_ID"
       echo "Branch: $$GIT_BRANCH"
 
-      curl -X PATCH \
+      curl -X POST \
       -H "Authorization: Bearer $$ACCESS_TOKEN" \
       -H "Content-Type: application/json" \
       -d "{
