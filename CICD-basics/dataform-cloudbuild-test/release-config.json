@@ -1,5 +1,5 @@
 {
-  "releaseConfigId": "dev-release3",
+  "releaseConfigId": "dev-release3", 
   "gitCommitish": "main",
   "cronSchedule": "0 18 * * *",
   "timeZone": "Asia/Kolkata"
