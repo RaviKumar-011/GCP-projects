@@ -1,1 +1,20 @@
-#
+
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - functions
+      - deploy
+      - copy-uploaded-file
+      - --gen2
+      - --runtime=python315
+      - --region=asia-south1
+      - --source=cloud_function/copy-uploaded-file
+      - --entry-point=move_file
+      - --trigger-event-filters=type=google.cloud.storage.object.v1.finalized
+      - --trigger-event-filters=bucket=ravi-gcp-lab-transactions-001
+      - --service-account=gcs-file-validator@project-ae06767c-03a0-4e39-a32.iam.gserviceaccount.com
+      - --project=project-ae06767c-03a0-4e39-a32
+
+options:
+  logging: CLOUD_LOGGING_ONLY
